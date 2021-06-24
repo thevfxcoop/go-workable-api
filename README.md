@@ -105,7 +105,7 @@ Flags:
   -endpoint string
     	Endpoint URL, can be overridden with WORKABLE_ENDPOINT environment variable
   -key string
-    	API Key, can be overridden with WORKABLE_APIKEY environment variable```
+    	API Key, can be overridden with WORKABLE_APIKEY environment variable
 ```
 
 ## License
