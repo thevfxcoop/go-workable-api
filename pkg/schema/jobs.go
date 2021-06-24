@@ -29,7 +29,10 @@ type Job struct {
 		ZipCode       string `json:"zip_code,omitempty"`
 		Telecommuting bool   `json:"telecommuting,omitempty"`
 	} `json:"location,omitempty"`
-	CreatedAt time.Time `json:"created_at,omitempty"`
+	Description     string    `json:"description,omitempty"`
+	FullDescription string    `json:"full_description,omitempty"`
+	Industry        string    `json:"industry,omitempty"`
+	CreatedAt       time.Time `json:"created_at,omitempty"`
 }
 
 ///////////////////////////////////////////////////////////////////////////////
