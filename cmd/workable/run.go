@@ -32,6 +32,7 @@ func Run(args []string, client *client.Client) error {
 		NewAccounts(client),
 		NewCandidates(client),
 		NewJobs(client),
+		NewStages(client),
 	}
 
 	// If no arguments, then use "accounts"

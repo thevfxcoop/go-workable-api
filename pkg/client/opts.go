@@ -1,6 +1,7 @@
 package client
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 	"path/filepath"
@@ -70,6 +71,56 @@ func OptPath(value ...string) RequestOpt {
 		url.Path = PathSeparator + filepath.Join(strings.Trim(url.Path, PathSeparator), strings.Join(value, PathSeparator))
 		// Set new path
 		r.URL = &url
+		return nil
+	}
+}
+
+// OptShortcode appends shortcode query onto the request
+func OptShortcode(value string) RequestOpt {
+	return func(r *http.Request) error {
+		params := r.URL.Query()
+		params.Set("shortcode", value)
+		r.URL.RawQuery = params.Encode()
+		return nil
+	}
+}
+
+// OptStage appends stage query onto the request
+func OptStage(value string) RequestOpt {
+	return func(r *http.Request) error {
+		params := r.URL.Query()
+		params.Set("stage", value)
+		r.URL.RawQuery = params.Encode()
+		return nil
+	}
+}
+
+// OptLimit appends limit query onto the request
+func OptLimit(value uint) RequestOpt {
+	return func(r *http.Request) error {
+		params := r.URL.Query()
+		params.Set("limit", fmt.Sprint(value))
+		r.URL.RawQuery = params.Encode()
+		return nil
+	}
+}
+
+// OptCreatedAfter appends created_after query onto the request
+func OptCreatedAfter(value time.Time) RequestOpt {
+	return func(r *http.Request) error {
+		params := r.URL.Query()
+		params.Set("created_after", value.Format(time.RFC3339))
+		r.URL.RawQuery = params.Encode()
+		return nil
+	}
+}
+
+// OptUpdatedAfter appends created_after query onto the request
+func OptUpdatedAfter(value time.Time) RequestOpt {
+	return func(r *http.Request) error {
+		params := r.URL.Query()
+		params.Set("updated_after", value.Format(time.RFC3339))
+		r.URL.RawQuery = params.Encode()
 		return nil
 	}
 }
