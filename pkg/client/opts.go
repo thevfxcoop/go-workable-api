@@ -125,6 +125,16 @@ func OptUpdatedAfter(value time.Time) RequestOpt {
 	}
 }
 
+// OptState appends state query onto the request
+func OptState(value string) RequestOpt {
+	return func(r *http.Request) error {
+		params := r.URL.Query()
+		params.Set("state", value)
+		r.URL.RawQuery = params.Encode()
+		return nil
+	}
+}
+
 // OptRateLimit sets the limit on number of requests per second
 // and the API will sleep when exceeded. For account tokens this is 1 per second
 func OptRateLimit(value float32) ClientOpt {
